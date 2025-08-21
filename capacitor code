@@ -1,0 +1,19 @@
+// Capacitor Timer Reader on ESP32
+const int capPin = 32;       // ADC-capable pin
+const float Vref = 3.3;      // ESP32 ADC reference voltage (3.3V)
+const int ADCmax = 4095;     // 12-bit ADC resolution
+
+void setup() {
+  Serial.begin(115200);
+}
+
+void loop() {
+  int capValue = analogRead(capPin);       // Raw ADC reading (0–4095)
+  float voltage = (capValue * Vref) / ADCmax;  // Convert to voltage
+
+  Serial.print("Capacitor Voltage Reading: ");
+  Serial.print(voltage, 3); // Print with 3 decimal places
+  Serial.println(" V");
+
+  delay(200);
+}
